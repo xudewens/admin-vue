@@ -1,7 +1,9 @@
 <template>
     <div id="bottom">
         <div class="left">
-            <div class="logo"></div>
+            <div class="logo">
+                <div class="logoImg"></div>
+            </div>
             <div class="content">
                 GLOBGAME is one of the outstanding e-commerce platforms in Indonesia. We are committed to building a comprehensive e-commerce service platform that integrates product display, online transactions, payment settlement, and logistics distribution. Since its e
             </div>
@@ -46,13 +48,30 @@ export default {
 
 <style lang="scss" scoped>
     #bottom {
-        padding: 10px 20px;
-        background-color: #390f6b;
         margin-right: 10px;
     }
-    @media (min-width: 576px) {
+    @media (max-width: 1200px) {
         #bottom {
-
+            .left {
+                background-color: #390f6b;
+                padding: 10px 20px;
+                margin-bottom: 10px;
+                .logo {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .logoImg {
+                        width: 210px;
+                        height: 40px;
+                        background-color: #fff;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            .right {
+                background-color: #390f6b;
+                padding: 10px 20px;
+            }
         }
     }
     @media (min-width: 1200px) {
@@ -60,11 +79,15 @@ export default {
             display: flex;
             .left {
                 width: 65%;
+                background-color: #390f6b;
+                padding: 10px 20px;
                 .logo {
-                    width: 410px;
-                    height: 50px;
-                    background-color: #fff;
-                    margin-bottom: 20px;
+                    .logoImg {
+                        width: 410px;
+                        height: 50px;
+                        background-color: #fff;
+                        margin-bottom: 20px;
+                    }
                 }
                 .content {
                     font-size: 14px;
@@ -89,7 +112,8 @@ export default {
             }
             .right {
                 width: 35%;
-                padding-left: 5px;
+                background-color: #390f6b;
+                padding: 10px 20px;
                 .top {
                     font-size: 20px;
                     font-weight: 600;

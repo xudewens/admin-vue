@@ -225,7 +225,7 @@ export default {
             border-radius: 3px;
             background-color: #390f6b;
             text-align: center;
-            margin: 0 10px 10px 0;
+            margin: 0 10px 20px 0;
             cursor: pointer;
         }
         @media (min-width: 576px) {
