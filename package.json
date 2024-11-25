@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "eslintConfig": {
-    "rules": {
-        "no-console": "off"
-    }
+        "rules": {
+            "no-console": "off"
+        }
     },
     "scripts": {
         "serve": "vue-cli-service serve",
