@@ -1,47 +1,86 @@
 <template>
-    <div id="homepage">
-        <div class="sub-caption">Popular Games</div>
-        <h2>Now Trending</h2>
-        <div id="home-favourite-track" class="cards-hscroll-track">
-            <div class="cards-hscroll-container card-hscroll-limit-homepagefeatured hftc">
-                <div v-for="item in 30" :key="item" class="card-sizer o">
-                    <div class="card-container a-plain">
-                        <div class="card-image flex-shrink-0">
-                            <img src="https://cdn.unipin.com/images/icon_product_pages/1731057021-icon-iocn-soul land 200_11zon.png" alt="">
-                        </div>
-                        <div class="card-title-publisher-wrap">
-                            <div class="card-game-publisher">UniPin</div>
-                            <div class="card-game-title">UniPin Voucher (ID)</div>
-                        </div>
-                        <div class="card-actions">
-                            <div class="topup-button rounded-pill flex-center-xy">top up</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h2 style="padding-top: 20px;">ALL</h2>
-        <div id="home-favourite-track" class="cards-hscroll-track" style="padding-left: 10px;">
-            <div class="cards-hscroll-container card-hscroll-limit-homepagefeatured hftc cards-hscroll-container2">
-                <div v-for="item in 10" :key="item" class="card-sizer o">
-                    <div class="card-container a-plain">
-                        <div class="card-image flex-shrink-0">
-                            <img src="https://cdn.unipin.com/images/icon_product_pages/1731057021-icon-iocn-soul land 200_11zon.png" alt="">
-                        </div>
-                        <div class="card-title-publisher-wrap">
-                            <div class="card-game-publisher">UniPin</div>
-                            <div class="card-game-title">UniPin Voucher (ID)</div>
-                        </div>
-                        <div class="card-actions">
-                            <div class="topup-button rounded-pill flex-center-xy">top up</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="loadmore">Load More</div>
-        <bottomInfo></bottomInfo>
+  <div id="homepage">
+    <div class="sub-caption">
+      Popular Games
     </div>
+    <h2>Now Trending</h2>
+    <div
+      id="home-favourite-track"
+      class="cards-hscroll-track"
+    >
+      <div class="cards-hscroll-container card-hscroll-limit-homepagefeatured hftc">
+        <div
+          v-for="item in 30"
+          :key="item"
+          class="card-sizer o"
+        >
+          <div class="card-container a-plain">
+            <div class="card-image flex-shrink-0">
+              <img
+                src="https://cdn.unipin.com/images/icon_product_pages/1731057021-icon-iocn-soul land 200_11zon.png"
+                alt=""
+              >
+            </div>
+            <div class="card-title-publisher-wrap">
+              <div class="card-game-publisher">
+                UniPin
+              </div>
+              <div class="card-game-title">
+                UniPin Voucher (ID)
+              </div>
+            </div>
+            <div class="card-actions">
+              <div class="topup-button rounded-pill flex-center-xy">
+                top up
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2 style="padding-top: 20px;">
+      ALL
+    </h2>
+    <div
+      id="home-favourite-track"
+      class="cards-hscroll-track"
+      style="padding-left: 10px;"
+    >
+      <div class="cards-hscroll-container card-hscroll-limit-homepagefeatured hftc cards-hscroll-container2">
+        <div
+          v-for="item in 10"
+          :key="item"
+          class="card-sizer o"
+        >
+          <div class="card-container a-plain">
+            <div class="card-image flex-shrink-0">
+              <img
+                src="https://cdn.unipin.com/images/icon_product_pages/1731057021-icon-iocn-soul land 200_11zon.png"
+                alt=""
+              >
+            </div>
+            <div class="card-title-publisher-wrap">
+              <div class="card-game-publisher">
+                UniPin
+              </div>
+              <div class="card-game-title">
+                UniPin Voucher (ID)
+              </div>
+            </div>
+            <div class="card-actions">
+              <div class="topup-button rounded-pill flex-center-xy">
+                top up
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loadmore">
+      Load More
+    </div>
+    <bottomInfo />
+  </div>
 </template>
 
 <script>
@@ -75,10 +114,10 @@ export default {
             -ms-overflow-style: none;
             // scrollbar-width: none;
         }
-        .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-homepagefeatured {
-            height: 240px;
-            margin-left: 15px;
-        }
+        // .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-homepagefeatured {
+        //     height: 240px;
+        //     margin-left: 15px;
+        // }
         .cards-hscroll-container {
             display: -webkit-box;
             display: flex;
@@ -142,13 +181,13 @@ export default {
             font-size: 11px;
             padding: 0 8px 8px;
         }
-        .card-container .card-game-publisher,
-        .card-container .card-game-title {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+        // .card-container .card-game-publisher,
+        // .card-container .card-game-title {
+        //     display: -webkit-box;
+        //     -webkit-box-orient: vertical;
+        //     overflow: hidden;
+        //     text-overflow: ellipsis;
+        // }
         .cards-hscroll-container .card-sizer {
             padding: 0 15px 15px 0;
             flex-shrink: 0;
