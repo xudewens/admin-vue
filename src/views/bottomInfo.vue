@@ -49,6 +49,7 @@ export default {
 <style lang="scss" scoped>
     #bottom {
         margin-right: 10px;
+        margin-bottom: 30px;
     }
     @media (max-width: 1200px) {
         #bottom {
