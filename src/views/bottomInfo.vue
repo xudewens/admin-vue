@@ -50,6 +50,7 @@ export default {
     #bottom {
         margin-right: 10px;
         margin-bottom: 30px;
+        color: #fff;
     }
     @media (max-width: 1200px) {
         #bottom {

@@ -31,4 +31,10 @@ export default {
     background-color: #9b86b4;
     display: flex;
 }
+@media (max-width: 1200px) {
+    .topBar {
+        margin: 0;
+        font-size: 16px;
+    }
+}
 </style>
