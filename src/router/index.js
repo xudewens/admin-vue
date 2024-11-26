@@ -32,6 +32,15 @@ const constantRoutes = [
                 }
             },
             {
+                path: 'productDetail',
+                name: 'productDetail',
+                component: () => import('@/views/product/productDetail'),
+                meta: {
+                    title:'商品详情',
+                    sidebar: false,
+                }
+            },
+            {
                 path: 'personal',
                 component: EmptyLayout,
                 redirect: '/personal/setting',
