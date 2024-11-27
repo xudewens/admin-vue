@@ -19,7 +19,7 @@ $g-app-bg: #fff;
 $g-main-bg: #9b86b4;
 
 // 头部背景色
-$g-header-bg: #222b45;
+$g-header-bg: #351267;
 // 头部导航文字颜色
 $g-header-menu-color: #fff;
 // 头部导航选中颜色
@@ -33,13 +33,13 @@ $g-main-sidebar-menu-color: #fff;
 $g-main-sidebar-menu-active-bg: lighten($g-main-sidebar-bg, 10);
 
 // 次侧边栏背景色
-$g-sub-sidebar-bg: #fafafa;
+$g-sub-sidebar-bg: #351267;
 // 次侧边栏菜单文字颜色
-$g-sub-sidebar-menu-color: #37414b;
+$g-sub-sidebar-menu-color: #fff;
 // 次侧边栏菜单文字选中颜色
 $g-sub-sidebar-menu-active-color: #e7f4ff;
 // 次侧边栏菜单选中背景色
-$g-sub-sidebar-menu-active-bg: #5482ee;
+$g-sub-sidebar-menu-active-bg: #9887b1;
 
 // 输出给js使用
 :export {
