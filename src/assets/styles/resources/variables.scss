@@ -23,7 +23,7 @@ $g-header-bg: #351267;
 // 头部导航文字颜色
 $g-header-menu-color: #fff;
 // 头部导航选中颜色
-$g-header-menu-active-bg: lighten($g-header-bg, 10);
+$g-header-menu-active-bg:#9887b1;
 
 // 主侧边栏背景色
 $g-main-sidebar-bg: #222b45;
@@ -40,7 +40,6 @@ $g-sub-sidebar-menu-color: #fff;
 $g-sub-sidebar-menu-active-color: #e7f4ff;
 // 次侧边栏菜单选中背景色
 $g-sub-sidebar-menu-active-bg: #9887b1;
-
 // 输出给js使用
 :export {
     g_main_sidebar_width: $g-main-sidebar-width;

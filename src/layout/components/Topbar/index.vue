@@ -1,21 +1,19 @@
 <template>
-    <div class="topbar-container">
-        <div class="left-box">
-            <div v-if="$store.state.settings.mode == 'mobile' || $store.state.settings.enableSidebarCollapse" :class="{
-                'sidebar-collapse': true,
-                'is-collapse': $store.state.settings.sidebarCollapse
-            }" @click="$store.commit('settings/toggleSidebarCollapse')"
-            >
-                <svg-icon name="collapse" />
-            </div>
-            <el-breadcrumb v-if="$store.state.settings.mode == 'pc'" separator-class="el-icon-arrow-right">
-                <transition-group name="breadcrumb">
-                    <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.path" :to="pathCompile(item.path)">{{ item.title }}</el-breadcrumb-item>
-                </transition-group>
-            </el-breadcrumb>
-        </div>
-        <UserMenu />
+  <div class="topbar-container">
+    <div class="left-box">
+      <div
+        v-if="$store.state.settings.mode == 'mobile' || $store.state.settings.enableSidebarCollapse"
+        :class="{
+          'sidebar-collapse': true,
+          'is-collapse': $store.state.settings.sidebarCollapse
+        }"
+        @click="$store.commit('settings/toggleSidebarCollapse')"
+      >
+        <svg-icon name="collapse" />
+      </div>
     </div>
+    <UserMenu />
+  </div>
 </template>
 
 <script>
@@ -88,9 +86,10 @@ export default {
     align-items: center;
     justify-content: space-between;
     height: $g-topbar-height;
-    background-color: #fff;
+    background-color: $g-header-bg;
     transition: 0.3s, box-shadow 0.2s;
     box-shadow: 0 0 1px 0 #ccc;
+    color: #fff;
     &.shadow {
         box-shadow: 0 10px 10px -10px #ccc;
     }

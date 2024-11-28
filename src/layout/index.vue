@@ -11,6 +11,19 @@
           <div class="main">
             <Logo />
           </div>
+          <div class="search_input">
+            <el-input
+              style="width: 824px; border-radius: 20px;"
+              placeholder="Search..."
+              v-model="input4"
+              clearable
+            >
+              <i
+                slot="prefix"
+                class="el-input__icon el-icon-search"
+              />
+            </el-input>
+          </div>
           <UserMenu />
         </div>
       </header>
@@ -41,14 +54,11 @@
                   :title="item.meta.title"
                   @click="$store.commit('menu/switchHeaderActived', index)"
                 >
-                  <div v-if="item.meta.icon">
-                    <svg-icon
-                      :name="item.meta.icon"
-                    />
-                  </div>
-                  <div>
-                    {{ item.meta.title }}
-                  </div>
+                  <svg-icon
+                    v-if="item.meta.icon"
+                    :name="item.meta.icon"
+                  />
+                  <span>{{ item.meta.title }}</span>
                 </div>
               </template>
             </div>
@@ -83,6 +93,7 @@
               <transition-group name="sidebar">
                 <template v-for="route in $store.getters['menu/sidebarRoutes']">
                   <SidebarItem
+                    v-if="route.meta.sidebar !== false"
                     :key="route.path"
                     :item="route"
                     :base-path="route.path"
@@ -92,7 +103,12 @@
             </el-menu>
           </div>
         </div>
+
         <div class="main-container">
+          <Topbar
+            :class="{'shadow': scrollTop}"
+            v-if="$store.state.settings.mode == 'mobile'"
+          />
           <div class="main">
             <transition
               name="main"
@@ -107,6 +123,34 @@
             </transition>
           </div>
           <Copyright v-if="$store.state.settings.showCopyright" />
+          <van-tabbar
+            route
+            inactive-color="#fff"
+            active-color="#fff"
+          >
+            <van-tabbar-item
+              replace
+              to="/dashboard"
+              icon="home-o"
+            >
+              Home
+            </van-tabbar-item>
+            <van-tabbar-item
+              replace
+              to="/breadcrumb_example"
+              icon="search"
+            >
+              Game
+            </van-tabbar-item>
+            <van-tabbar-item
+              replace
+              to="/breadcrumb_example1"
+              name="friends"
+              icon="friends-o"
+            >
+              About
+            </van-tabbar-item>
+          </van-tabbar>
         </div>
       </div>
       <el-backtop
@@ -240,6 +284,17 @@ export default {
     }
     .main-container {
         margin-left: 0 !important;
+    }
+}
+.search_input {
+    ::v-deep .el-input__inner {
+        border-radius: 20px !important;
+        background-color: $g-main-bg;
+        border: 1px solid $g-main-bg;
+    }
+    ::v-deep .el-input__prefix,
+    ::v-deep .el-input__inner::placeholder {
+        color: #fff;
     }
 }
 .layout {
@@ -451,7 +506,7 @@ header {
             height: 100%;
             flex: auto;
             position: relative;
-            padding: $g-topbar-height 0 0 0;
+            padding: $g-topbar-height 20px 20px 20px;
             overflow: hidden;
         }
     }
@@ -510,5 +565,11 @@ header + .wrapper {
 }
 .el-menu {
     border-right: none;
+}
+.van-tabbar {
+    background-color: $g-header-bg;
+}
+.van-tabbar-item--active {
+    background-color: $g-header-menu-active-bg;
 }
 </style>
