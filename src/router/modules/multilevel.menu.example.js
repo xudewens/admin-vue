@@ -2,7 +2,7 @@ import Layout from '@/layout'
 import EmptyLayout from '@/layout/empty'
 
 export default {
-    path: '/multilevel_menu_example',
+    path: '/',
     component: Layout,
     name: 'multilevelMenuExample',
     meta: {

@@ -2,7 +2,7 @@ import Layout from '@/layout'
 import EmptyLayout from '@/layout/empty'
 
 export default {
-    path: '/breadcrumb_example',
+    path: '/allProduct',
     component: Layout,
     name: 'breadcrumbExample',
     meta: {
