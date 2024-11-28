@@ -13,6 +13,7 @@
           v-for="item in 30"
           :key="item"
           class="card-sizer o"
+          @click="toDetails(item)"
         >
           <div class="card-container a-plain">
             <div class="card-image flex-shrink-0">
@@ -54,6 +55,7 @@
         <div
           v-for="item in 10"
           :key="item"
+          @click="toDetails(item)"
           class="card-sizer o"
         >
           <div class="card-container a-plain">
@@ -97,7 +99,16 @@ export default {
         return {
              searchValue:'',
         }
-    }
+    },
+    methods: {
+      // 商品详情
+      toDetails(item){
+        this.$router.push({
+          path:'/productDetail',
+          query:{}
+        })
+      },
+    },  
 }
 </script>
 
