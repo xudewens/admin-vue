@@ -47,6 +47,7 @@
                             </svg>
                         </template>
                     </el-input>
+                    <el-button class="more-btn" @click="learnmore">Learn more</el-button>
                     <p>Note:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                 </el-card>
                 <el-card class="box-card">
@@ -113,6 +114,12 @@
             </div>
         </div>
         <bottomInfo />
+        <el-dialog
+            :visible.sync="dialogVisible"
+            width="70%"
+            >
+            <span>这是后台配置的游戏指引信息</span>
+          </el-dialog>
     </div>
 </template>
 
@@ -158,7 +165,8 @@ export default {
         email:'',
         gameID:'',
         checkPriceValue:'',
-        checked:true
+        checked:true,
+        dialogVisible:false
       }
   },
   methods: {
@@ -168,6 +176,9 @@ export default {
       });
       value.active = true
       this.checkPriceValue = value
+    },
+    learnmore() {
+      this.dialogVisible = true
     },
   },
 }
@@ -259,6 +270,15 @@ export default {
 ::v-deep .el-checkbox__input.is-checked + .el-checkbox__label {
     color: #f97300;
 }
+::v-deep .el-dialog {
+    background-color: #9b86b4;
+}
+::v-deep .el-dialog__headerbtn .el-dialog__close {
+    color: #fff;
+}
+::v-deep .el-dialog__body {
+    color: #fff;
+}
 @media (min-width: 1200px) {
     .content {
         display: flex;
@@ -308,6 +328,13 @@ export default {
             width: 100%;
             border-color: #f97300;
             margin: 30px 0 40px 0;
+        }
+        .more-btn {
+            background-color: #f97300;
+            color: #fff;
+            font-size: 12px;
+            margin-left: 10px;
+            border-color: #f97300;
         }
         .el-checkbox {
             font-size: 18px;
@@ -372,6 +399,14 @@ export default {
             width: 100%;
             border-color: #f97300;
             margin: 30px 0 40px 0;
+        }
+        .more-btn {
+            background-color: #f97300;
+            color: #fff;
+            font-size: 12px;
+            margin-left: 5px;
+            border-color: #f97300;
+            padding: 12px 10px;
         }
         .el-checkbox {
             font-size: 18px;
