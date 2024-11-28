@@ -1,57 +1,14 @@
 <template>
-  <div id="homepage">
-    <div class="sub-caption">
-      Popular Games
-    </div>
-    <h2>Now Trending</h2>
-    <div
-      id="home-favourite-track"
-      class="cards-hscroll-track"
-    >
-      <div class="cards-hscroll-container card-hscroll-limit-homepagefeatured hftc">
-        <div
-          v-for="item in 30"
-          :key="item"
-          class="card-sizer o"
-          @click="toDetails(item)"
-        >
-          <div class="card-container a-plain">
-            <div class="card-image flex-shrink-0">
-              <img
-                src="https://cdn.unipin.com/images/icon_product_pages/1731057021-icon-iocn-soul land 200_11zon.png"
-                alt=""
-              >
-            </div>
-            <div class="card-title-publisher-wrap">
-              <div class="card-game-publisher">
-                UniPin
-              </div>
-              <div class="card-game-title">
-                UniPin Voucher (ID)
-              </div>
-            </div>
-            <div class="card-actions">
-              <div class="topup-button rounded-pill flex-center-xy">
-                top up
-              </div>
-            </div>
-          </div>
-          <div class="tags">
-            HOT
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- 商品搜索 -->
+  <div id="productSearch">
+    <topBar>Search</topBar>
     <van-search v-model="searchValue" shape="round" background="#9b86b4" placeholder="Search..." clearable style="margin: 0 8%;"/>
-    <h2 style="padding-top: 20px;">
-      ALL
-    </h2>
     <div
       id="home-favourite-track"
       class="cards-hscroll-track"
       style="padding-left: 10px;"
     >
-      <div class="cards-hscroll-container card-hscroll-limit-homepagefeatured hftc cards-hscroll-container2">
+      <div class="cards-hscroll-container card-hscroll-limit-productSearchfeatured hftc cards-hscroll-container2">
         <div
           v-for="item in 10"
           :key="item"
@@ -82,15 +39,12 @@
         </div>
       </div>
     </div>
-    <div class="loadmore" @click="loadMore">
-      Load More
-    </div>
     <bottomInfo />
   </div>
 </template>
 
 <script>
-import bottomInfo from './bottomInfo.vue'
+import bottomInfo from '@/views/bottomInfo.vue'
 export default {
     components: {
         bottomInfo
@@ -119,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    #homepage {
+    #productSearch {
         color: #fff;
         font-size: 14px;
         .sub-caption {
@@ -146,7 +100,7 @@ export default {
         ::v-deep .van-field__left-icon {
             color: #fff !important;
         }
-        // .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-homepagefeatured {
+        // .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-productSearchfeatured {
         //     height: 240px;
         //     margin-left: 15px;
         // }
@@ -294,7 +248,7 @@ export default {
             color: #fff;
             background: #ff962d;
         }
-        .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-homepagefeatured {
+        .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-productSearchfeatured {
             display: flex;
             height: 240px;
             margin-left: 15px;
@@ -312,7 +266,7 @@ export default {
             cursor: pointer;
         }
         @media (min-width: 576px) {
-            .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-homepagefeatured {
+            .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-productSearchfeatured {
                 height: 300px;
             }
         }
@@ -406,7 +360,7 @@ export default {
             }
         }
         @media (min-width: 992px) {
-            .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-homepagefeatured {
+            .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-productSearchfeatured {
                 height: 315px;
                 width: auto;
                 margin-left: 30px;
@@ -414,7 +368,7 @@ export default {
             }
         }
         @media (min-width: 1200px) {
-            .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-homepagefeatured {
+            .home-featured-tab-content .cards-hscroll-container.card-hscroll-limit-productSearchfeatured {
                 height: 385px;
             }
         }

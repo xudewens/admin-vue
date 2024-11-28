@@ -50,6 +50,15 @@ const constantRoutes = [
                 }
             },
             {
+                path: 'productSearch',
+                name: 'productSearch',
+                component: () => import('@/views/product/productSearch'),
+                meta: {
+                    title:'搜索商品',
+                    sidebar: false,
+                }
+            },
+            {
                 path: 'personal',
                 component: EmptyLayout,
                 redirect: '/personal/setting',

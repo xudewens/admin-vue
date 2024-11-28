@@ -1,5 +1,6 @@
 <template>
   <div class="user">
+        <el-button class="signin" @click="Signin">Sign in</el-button>
     <div class="tools">
       <!-- <el-tooltip
         v-if="$store.state.settings.enableNavSearch"
@@ -86,6 +87,30 @@
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
+        <el-dialog
+            :visible.sync="dialogVisible1"
+            width="70%"
+            >
+            <span>登录1</span>
+        </el-dialog>
+        <el-dialog
+            :visible.sync="dialogVisible2"
+            width="70%"
+            >
+            <span>登录2</span>
+        </el-dialog>
+        <el-dialog
+            :visible.sync="dialogVisible3"
+            width="70%"
+            >
+            <span>登录3</span>
+        </el-dialog>
+        <el-dialog
+            :visible.sync="dialogVisible4"
+            width="70%"
+            >
+            <span>登录4</span>
+        </el-dialog>
   </div>
 </template>
 
@@ -98,7 +123,11 @@ export default {
     data() {
         return {
             isFullscreenEnable: screenfull.isEnabled,
-            isFullscreen: false
+            isFullscreen: false,
+            dialogVisible1: true,
+            dialogVisible2: false,
+            dialogVisible3: false,
+            dialogVisible4: false,
         }
     },
     mounted() {
@@ -138,6 +167,10 @@ export default {
                     })
                     break
             }
+        },
+        // 登录弹窗
+        Signin() {
+
         }
     }
 }
@@ -174,5 +207,25 @@ export default {
             margin-right: 4px;
         }
     }
+}
+.signin {
+    color: #fff;
+    font-size: 16px;
+    background-color: #9b86b4;
+    border-color: #9b86b4;
+}
+.el-button:hover {
+    color: unset;
+    border-color: unset;
+    background-color: unset;
+}
+::v-deep .el-dialog {
+    background-color: #9b86b4;
+}
+::v-deep .el-dialog__headerbtn .el-dialog__close {
+    color: #fff;
+}
+::v-deep .el-dialog__body {
+    color: #fff;
 }
 </style>
