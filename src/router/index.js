@@ -59,6 +59,15 @@ const constantRoutes = [
                 }
             },
             {
+                path: 'about',
+                name: 'about',
+                component: () => import('@/views/user/index'),
+                meta: {
+                    title:'我的',
+                    sidebar: false,
+                }
+            },
+            {
                 path: 'personal',
                 component: EmptyLayout,
                 redirect: '/personal/setting',
@@ -96,17 +105,19 @@ const constantRoutes = [
 
 import MultilevelMenuExample from './modules/multilevel.menu.example'
 import BreadcrumbExample from './modules/breadcrumb.example'
+import About from './modules/aboutMe'
 
 // 当 children 不为空的主导航只有一项时，则隐藏
 let asyncRoutes = [
     {
-        meta: {
-            title: '演示',
-            icon: 'sidebar-default'
-        },
+        // meta: {
+        //     title: '演示',
+        //     icon: 'sidebar-default'
+        // },
         children: [
             MultilevelMenuExample,
-            BreadcrumbExample
+            BreadcrumbExample,
+            About
         ]
     }
 ]

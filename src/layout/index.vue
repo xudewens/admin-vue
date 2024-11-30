@@ -11,11 +11,11 @@
           <div class="main">
             <Logo />
           </div>
-          <div class="search_input">
+          <div class="search_input" style="width: 50%;">
             <el-input
-              style="width: 824px; border-radius: 20px;"
+              style="width: 100%; border-radius: 20px;"
               placeholder="Search..."
-              v-model="input4"
+              v-model="searchValue"
               clearable
             >
               <i
@@ -137,15 +137,15 @@
             </van-tabbar-item>
             <van-tabbar-item
               replace
-              to="/breadcrumb_example"
+              to="/allProduct"
               icon="search"
             >
               Game
             </van-tabbar-item>
             <van-tabbar-item
               replace
-              to="/breadcrumb_example1"
-              name="friends"
+              to="/about"
+              name="about"
               icon="friends-o"
             >
               About
@@ -193,7 +193,8 @@ export default {
             isRouterAlive: true,
             routePath: '',
             sidebarScrollTop: 0,
-            scrollTop: 0
+            scrollTop: 0,
+            searchValue:''
         }
     },
     computed: {

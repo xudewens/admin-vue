@@ -4,7 +4,7 @@ import EmptyLayout from '@/layout/empty'
 export default {
     path: '/allProduct',
     component: Layout,
-    name: 'breadcrumbExample',
+    name: 'allProduct',
     meta: {
         title: 'Game',
         icon: 'sidebar-breadcrumb'

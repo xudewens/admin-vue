@@ -2,11 +2,11 @@ import Layout from '@/layout'
 import EmptyLayout from '@/layout/empty'
 
 export default {
-    path: '/dashboard',
+    path: '/about',
     component: Layout,
-    name: 'multilevelMenuExample',
+    name: 'allProduct',
     meta: {
-        title: 'Home',
+        title: 'About',
         icon: 'sidebar-menu'
     },
     // children: [
