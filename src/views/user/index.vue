@@ -1,19 +1,28 @@
 <template>
   <div id="user">
-      <!-- <el-radio-group v-model="tabPosition" style="margin-bottom: 30px;">
+    <!-- <el-radio-group v-model="tabPosition" style="margin-bottom: 30px;">
           <el-radio-button label="top">top</el-radio-button>
           <el-radio-button label="right">right</el-radio-button>
           <el-radio-button label="bottom">bottom</el-radio-button>
           <el-radio-button label="left">left</el-radio-button>
       </el-radio-group> -->
-      <el-tabs type="border-card" v-model="activeName">
-          <el-tab-pane label="Transaction" name="Transaction">
-              <transaction></transaction>
-          </el-tab-pane>
-          <el-tab-pane label="Settings" name="Settings">
-              <Setting></Setting>
-          </el-tab-pane>
-      </el-tabs>
+    <el-tabs
+      type="border-card"
+      v-model="activeName"
+    >
+      <el-tab-pane
+        label="Transaction"
+        name="Transaction"
+      >
+        <transaction />
+      </el-tab-pane>
+      <el-tab-pane
+        label="Settings"
+        name="Settings"
+      >
+        <Setting />
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 

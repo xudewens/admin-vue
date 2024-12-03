@@ -11,7 +11,10 @@
           <div class="main">
             <Logo />
           </div>
-          <div class="search_input" style="width: 50%;">
+          <div
+            class="search_input"
+            style="width: 50%;"
+          >
             <el-input
               style="width: 100%; border-radius: 20px;"
               placeholder="Search..."
@@ -127,6 +130,7 @@
             route
             inactive-color="#fff"
             active-color="#fff"
+            v-if="$store.state.settings.mode === 'mobile'"
           >
             <van-tabbar-item
               replace
