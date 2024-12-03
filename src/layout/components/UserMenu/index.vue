@@ -106,8 +106,8 @@
                         <el-input placeholder="Email Address" v-model="email"></el-input>
                     </div>
                     <div class="loginStp3" v-if="loginStp3">
-                        <div class="checkbox1"> Please check your email </div>
-                        <div class="checkbox2">{{ email }}</div>
+                        <div class="checkbox1"> Verification code already send to {{ email }}</div>
+                        <!-- <div class="checkbox2">{{ email }}</div> -->
                         <div class="lastTime">{{ hh }} : {{ mm }} : {{ ss }}</div>
                         <div class="content-join">
                         <div @click="firstFocus()" ref="joinLetter" class="join-letter">
@@ -160,8 +160,6 @@ export default {
             isFullscreen: false,
             dialogVisible1: false,
             email:'',
-            isShow: true,
-            msg: '',
             imgList:[
                 'https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2024%2F0514%2F39c3774bj00sdg7480085d200u00191g00u00191.jpg&thumbnail=660x2147483647&quality=80&type=jpg',
                 'https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2024%2F0217%2F94e6cfe3j00s8z717002gd200p000p0g00it00it.jpg&thumbnail=660x2147483647&quality=80&type=jpg',
@@ -175,7 +173,6 @@ export default {
             joinLetter: null,
             // 当前处理的元素
              myDiv :null,
-             isShow :true,
              codeId :'',
              second : 0,// 倒计时
              hh : '00',
