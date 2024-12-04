@@ -17,10 +17,7 @@
         >
           <div class="card-container a-plain">
             <div class="card-image flex-shrink-0">
-              <img
-                src="https://cdn.unipin.com/images/icon_product_pages/1731057021-icon-iocn-soul land 200_11zon.png"
-                alt=""
-              >
+              <img src="https://cdn.unipin.com/images/icon_product_pages/1731057021-icon-iocn-soul land 200_11zon.png" alt="">
             </div>
             <div class="card-title-publisher-wrap">
               <div class="card-game-publisher">
@@ -42,7 +39,7 @@
         </div>
       </div>
     </div>
-    <van-search v-model="searchValue" shape="round" background="#9b86b4" placeholder="Search..." clearable style="margin: 0 8%;"/>
+    <van-search v-if="$store.state.settings.mode !== 'pc'"  v-model="searchValue" shape="round" background="#9b86b4" placeholder="Search..." clearable style="margin: 0 8%;"/>
     <h2 style="padding-top: 20px;">
       ALL
     </h2>
@@ -388,7 +385,7 @@ export default {
                 height: 4.2em;
             }
             .van-search {
-                display: none;
+                // display: none;
             }
         }
         @media (min-width: 992px) {

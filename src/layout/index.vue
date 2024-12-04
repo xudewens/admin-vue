@@ -20,6 +20,7 @@
               placeholder="Search..."
               v-model="searchValue"
               clearable
+              @blur="toSearch"
             >
               <i
                 slot="prefix"
@@ -273,6 +274,14 @@ export default {
         },
         onScroll() {
             this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        },
+        toSearch(){
+          this.$router.push({
+            path:'/productSearch',
+            query:{
+              srarchValue:this.searchValue
+            }
+          })
         }
     }
 }
