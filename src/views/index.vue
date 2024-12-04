@@ -9,8 +9,7 @@
       class="cards-hscroll-track"
     >
       <div class="cards-hscroll-container card-hscroll-limit-homepagefeatured hftc">
-        <div
-          v-for="item in 30"
+        <div v-for="item in 30"
           :key="item"
           class="card-sizer o"
           @click="toDetails(item)"
@@ -88,6 +87,7 @@
 
 <script>
 import bottomInfo from './bottomInfo.vue'
+import { webSiteInfo } from '@/api/website'
 export default {
     components: {
         bottomInfo
@@ -97,7 +97,28 @@ export default {
              searchValue:'',
         }
     },
+    mounted() {
+        this.getWebSiteInfo()
+    },
     methods: {
+      // 网站信息
+      getWebSiteInfo  () {
+        webSiteInfo({}).then((res) => {
+          localStorage.removeItem('IDKYC_SETINFO')
+          localStorage.setItem('IDKYC_SETINFO', JSON.stringify(res.data))
+          themeLogo = res.data.logo
+          // userStore.setUserInfo(data)
+        }).catch(() => {
+          const data = {
+            themeColor: '#FB447C',
+            themeLogo: './assets/image/logo.png',
+            themeEmail: '',
+            themeTelegram: ''
+          }
+          // userStore.setUserInfo(data)
+          // localStorage.setItem('IDKYC_SETINFO', JSON.stringify(res.data))
+        })
+      },
       // 商品详情
       toDetails(item){
         this.$router.push({

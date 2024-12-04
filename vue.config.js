@@ -58,12 +58,16 @@ module.exports = {
     lintOnSave: false,
     devServer: {
         open: true,
-        // proxy: {
-        //     '/': {
-        //         target: process.env.VUE_APP_API_ROOT,
-        //         changeOrigin: true
-        //     }
-        // },
+        proxy: {
+            '/api': {
+                target: 'https://alhty-king.com/api',
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: {
+                    '^/api': ''
+                },
+            }
+        },
         // 用于 mock-server
         // proxy: {
         //     '/mock': {
