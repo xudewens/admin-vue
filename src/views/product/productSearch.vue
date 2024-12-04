@@ -2,7 +2,11 @@
   <!-- 商品搜索 -->
   <div id="productSearch">
     <topBar>Search</topBar>
-    <van-search v-model="searchValue" shape="round" background="#9b86b4" placeholder="Search..." clearable style="margin: 0 8%;"/>
+    <van-search v-model="searchValue" shape="round" background="#9b86b4" placeholder="Search..." clearable style="margin: 0 8%;" v-if="$store.state.settings.mode !== 'pc'" />
+    <div v-if="!productList.length" style="height: 400px; flex-direction: column; display: flex; align-items: center; justify-content: center; font-size: 22px;">
+        No data found
+        <img src="../../assets/images/noData.png" alt="" width="550" style="margin-top: 10px;">
+    </div>
     <div
       id="home-favourite-track"
       class="cards-hscroll-track"
@@ -10,7 +14,7 @@
     >
       <div class="cards-hscroll-container card-hscroll-limit-productSearchfeatured hftc cards-hscroll-container2">
         <div
-          v-for="item in 10"
+          v-for="item in 1"
           :key="item"
           @click="toDetails(item)"
           class="card-sizer o"
@@ -52,6 +56,9 @@ export default {
     data() {
         return {
              searchValue:'',
+             productList:[
+                
+             ]
         }
     },
     methods: {
@@ -342,7 +349,7 @@ export default {
                 height: 4.2em;
             }
             .van-search {
-                display: none;
+                // display: none;
             }
         }
         @media (min-width: 992px) {

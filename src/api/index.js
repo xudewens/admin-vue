@@ -14,58 +14,57 @@ const toLogin = () => {
 }
 
 const api = axios.create({
-    baseURL: process.env.VUE_APP_API_ROOT,
-    timeout: 10000,
-    responseType: 'json'
-    // withCredentials: true
+    baseURL: '/api',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    timeout: 50000
 })
 
 api.interceptors.request.use(
-    request => {
-        if (request.method == 'post') {
-            if (request.data instanceof FormData) {
-                if (store.getters['user/isLogin']) {
-                    // 如果是 FormData 类型（上传图片）
-                    request.data.append('token', store.state.user.token)
-                }
-            } else {
-                // 带上 token
-                if (request.data == undefined) {
-                    request.data = {}
-                }
-                if (store.getters['user/isLogin']) {
-                    request.data.token = store.state.user.token
-                }
-                // request.data = Qs.stringify(request.data)
-            }
-        } else {
-            // 带上 token
-            if (request.params == undefined) {
-                request.params = {}
-            }
-            if (store.getters['user/isLogin']) {
-                request.params.token = store.state.user.token
-            }
+    config => {
+        console.log('请求地址:', config.baseURL + config.url);
+        config.headers['Country'] = 'INDONESIA'
+        config.headers['Accept-Language'] = 'EN'
+        if(localStorage.getItem('userInfo')){
+          config.headers['Token'] = JSON.parse(localStorage.getItem('userInfo')).token
         }
-        return request
-    }
+        if(localStorage.getItem('webSeitInfo')){
+          config.headers['Web-Site-ID']  = JSON.parse(localStorage.getItem('webSeitInfo')).webSiteId || ''
+          console.log(JSON.parse(localStorage.getItem('webSeitInfo')).webSiteId,'webSiteId=======>>>>>>>')
+        }
+        return config
+      },
+      error => {
+        console.log(error) // for debug
+        return Promise.reject(error)
+      }
 )
 
 api.interceptors.response.use(
     response => {
-        if (response.data.error != '') {
-            // 如果接口请求时发现 token 失效，则立马跳转到登录页
-            if (response.data.status == 0) {
-                toLogin()
-            }
-            Message.error(response.data.error)
-            return Promise.reject(response.data)
+        const res = response.data
+        if (String(res.code) === 'undefined') {
+          return res
         }
-        return Promise.resolve(response.data)
-    },
-    error => {
+        if (res.code !== '2000100' && res.code !== '2000105') {
+            Message(res.message)
+          return res
+        }else if(res.code == '2000105'){
+          // 表示token过期
+          Message(res.message)
+        //   router.push({ path: '/login' }); // todo 打开登录弹窗
+          return res
+        } else {
+          return res
+        }
+      },
+      
+      error => {
+        console.log('err' + error)
+        Message('NetWork Error')
         return Promise.reject(error)
-    }
+      }
 )
 
 export default api

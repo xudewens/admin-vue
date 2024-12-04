@@ -6,7 +6,7 @@ let globalSettings = {
      * 3、鉴权指令：v-auth、v-auth-all
      * 4、鉴权函数：this.$auth()、this.$authAll()
      */
-    openPermission: true,
+    openPermission: false,
     // 是否显示头部
     showHeader: true,
     // 是否始终显示主侧边栏，设置为 false 且主侧边栏里只有一个导航时，主侧边栏会自动隐藏

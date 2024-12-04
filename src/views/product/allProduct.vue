@@ -1,22 +1,19 @@
 <template>
   <div id="allProduct">
-    <van-search v-model="searchValue" shape="round" background="#9b86b4" placeholder="Search..." style="margin: 0 8%;" clearable/>
+    <van-search v-model="searchValue" shape="round" background="#9b86b4" placeholder="Search..." style="margin: 0 8%;" clearable  v-if="$store.state.settings.mode !== 'pc'"/>
     <van-index-bar>
         <div class="content-box" v-for="item in productList" :key="item.key">
         <!-- <div class="product-title" style="padding: 10px 0 0 10px;">
             {{ item.key }}
         </div> -->
         <van-index-anchor :index="item.key" />
-        <div
-        id="home-favourite-track"
-        class="cards-hscroll-track"
-        style="padding-left: 10px;"
-        >
+        <div id="home-favourite-track" class="cards-hscroll-track" style="padding-left: 10px;">
         <div class="cards-hscroll-container card-hscroll-limit-allProductfeatured hftc cards-hscroll-container2">
             <div
             v-for="product in item.children"
             :key="product.id"
             class="card-sizer o"
+            @click="toDetails(item)"
             >
             <div class="card-container a-plain">
                 <div class="card-image flex-shrink-0">
@@ -118,7 +115,16 @@ export default {
             ],
             searchValue:''
         }
-    }
+    },
+    methods: {
+      // 商品详情
+      toDetails(item){
+        this.$router.push({
+          path:'/productDetail',
+          query:{}
+        })
+      },
+    },
 }
 </script>
 
@@ -420,7 +426,7 @@ export default {
                 height: 4.2em;
             }
             .van-search {
-                display: none;
+                // display: none;
             }
         }
         @media (min-width: 992px) {
