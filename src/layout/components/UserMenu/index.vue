@@ -1,8 +1,66 @@
 <template>
   <div class="user">
-    <el-button class="signin" @click="Signin">Sign in</el-button>
-    <div class="tools">
-      <!-- <el-tooltip
+    <el-button
+      class="signin"
+      @click="Signin"
+    >
+      Sign in
+    </el-button>
+    <!-- 登录完成后需要显示的user -->
+    <div
+      class="user_van-overlay"
+      v-if="shoowOverlay&&$store.state.settings.mode == 'mobile'"
+    />
+    <el-popover
+      placement="bottom-start"
+      trigger="click"
+      popper-class="down-popover"
+      @show="changeOverlay"
+      @hide="changeOverlay"
+    >
+      <div class="user_info">
+        <div class="user_top">
+          <span style="display: flex; width: 70%; align-items: center; justify-content: space-between;">
+            <i
+              class="el-icon-user"
+              style="font-size: 32px;"
+            />
+            <div>d******@********</div>
+            <i class="el-icon-view" />
+          </span>
+
+          <i
+            class="el-icon-switch-button"
+            style="font-size: 28px;"
+          />
+        </div>
+        <div class="user_bottom">
+          <div style="width: 40%;">
+            <i
+              class="el-icon-view"
+              style="font-size: 42px;"
+            />
+            <div>Edit Profile</div>
+          </div>
+          <div style="width: 40%;">
+            <i
+              class="el-icon-tickets"
+              style="font-size: 42px;"
+            />
+            <div>Transaction History</div>
+          </div>
+        </div>
+      </div>
+      <div
+        slot="reference"
+        class="user_icon"
+      >
+        <i class="el-icon-user" />
+      </div>
+    </el-popover>
+
+    <!-- <div class="tools">
+      <el-tooltip
         v-if="$store.state.settings.enableNavSearch"
         effect="dark"
         content="搜索页面"
@@ -14,7 +72,7 @@
         >
           <svg-icon name="search" />
         </span>
-      </el-tooltip> -->
+      </el-tooltip>
       <el-tooltip
         v-if="$store.state.settings.mode == 'pc' && isFullscreenEnable && $store.state.settings.enableFullscreen"
         effect="dark"
@@ -41,7 +99,7 @@
           <svg-icon name="reload" />
         </span>
       </el-tooltip>
-      <!-- <el-tooltip
+      <el-tooltip
         v-if="$store.state.settings.enableThemeSetting"
         effect="dark"
         content="主题配置"
@@ -53,8 +111,8 @@
         >
           <svg-icon name="theme" />
         </span>
-      </el-tooltip> -->
-    </div>
+      </el-tooltip>
+    </div> -->
     <!-- <el-dropdown
       class="user-container"
       @command="handleCommand"
@@ -87,61 +145,100 @@
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown> -->
-        <el-dialog
-            :visible.sync="dialogVisible1"
-            :width="isMobile ? '90%' : '70%'"
-            append-to-body
-            >
-            <div class="content">
-                <div class="left">
-                    <div class="back">
-                        <i v-if="!loginStp1" class="el-icon-arrow-left" style="font-size: 18px; font-weight: bold;" @click="backlogin"></i>
-                    </div>
-                    <div class="logo-title">Sign in</div>
-                    <div class="logo-img">Logo</div>
-                </div>
-                <div class="right">
-                    <div style="width: 310px; margin-bottom: 20px;" v-if="loginStp1">
-                        <div class="step-title">Email</div>
-                        <el-input placeholder="Email Address" v-model="email"></el-input>
-                    </div>
-                    <div class="loginStp3" v-if="loginStp3">
-                        <div class="checkbox1"> Verification code already send to {{ email }}</div>
-                        <!-- <div class="checkbox2">{{ email }}</div> -->
-                        <div class="lastTime">{{ hh }} : {{ mm }} : {{ ss }}</div>
-                        <div class="content-join">
-                        <div @click="firstFocus()" ref="joinLetter" class="join-letter">
-                            <van-field v-for="item in [1, 2, 3, 4]" :key="item"
-                            :readonly="!!letterList[`letter${item}`]" class="letter-field" center 
-                            :class="fieldIndex == item && 'letterBorder'"
-                            type="textarea"
-                            v-model="letterList[`letter${item}`]" maxlength="1" 
-                            @focus="getFocus(item)"
-                            @blur="getBlur()" 
-                            :formatter="formatter" 
-                            @input="getUpdate(item)">
-                            </van-field>
-                        </div>
-                        </div>
-                    </div>
-                    <slide-verify :l="42"
-                        :r="10"
-                        :w="310"
-                        :h="155"
-                        :imgs="imgList"
-                        ref="slideblock"
-                        slider-text="Swipe right"
-                        @success="onSuccess"
-                        @fail="onFail"
-                        @refresh="onRefresh"
-                        v-if="loginStp2"
-                        >
-                    </slide-verify>
-                    <!-- <div>{{msg}}</div> -->
-                    <div class="send-again" v-if="loginStp4" @click="SendAgain">Send again</div>
-                </div>
+    <el-dialog
+      :visible.sync="dialogVisible1"
+      :width="isMobile ? '90%' : '70%'"
+      append-to-body
+    >
+      <div class="content">
+        <div class="left">
+          <div class="back">
+            <i
+              v-if="!loginStp1"
+              class="el-icon-arrow-left"
+              style="font-size: 18px; font-weight: bold;"
+              @click="backlogin"
+            />
+          </div>
+          <div class="logo-title">
+            Sign in
+          </div>
+          <div class="logo-img">
+            Logo
+          </div>
+        </div>
+        <div class="right">
+          <div
+            style="width: 310px; margin-bottom: 20px;"
+            v-if="loginStp1"
+          >
+            <div class="step-title">
+              Email
             </div>
-        </el-dialog>
+            <el-input
+              placeholder="Email Address"
+              v-model="email"
+            />
+          </div>
+          <div
+            class="loginStp3"
+            v-if="loginStp3"
+          >
+            <div class="checkbox1">
+              Verification code already send to {{ email }}
+            </div>
+            <!-- <div class="checkbox2">{{ email }}</div> -->
+            <div class="lastTime">
+              {{ hh }} : {{ mm }} : {{ ss }}
+            </div>
+            <div class="content-join">
+              <div
+                @click="firstFocus()"
+                ref="joinLetter"
+                class="join-letter"
+              >
+                <van-field
+                  v-for="item in [1, 2, 3, 4]"
+                  :key="item"
+                  :readonly="!!letterList[`letter${item}`]"
+                  class="letter-field"
+                  center 
+                  :class="fieldIndex == item && 'letterBorder'"
+                  type="textarea"
+                  v-model="letterList[`letter${item}`]"
+                  maxlength="1" 
+                  @focus="getFocus(item)"
+                  @blur="getBlur()" 
+                  :formatter="formatter" 
+                  @input="getUpdate(item)"
+                />
+              </div>
+            </div>
+          </div>
+          <slide-verify
+            :l="42"
+            :r="10"
+            :w="310"
+            :h="155"
+            :imgs="imgList"
+            ref="slideblock"
+            slider-text="Swipe right"
+            @success="onSuccess"
+            @fail="onFail"
+            @refresh="onRefresh"
+            v-if="loginStp2"
+          />
+          <!-- <div>{{msg}}</div> -->
+          <div
+            class="send-again"
+            v-if="loginStp4"
+            @click="SendAgain"
+          >
+            Send again
+          </div>
+        </div>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -156,6 +253,7 @@ export default {
     inject: ['reload'],
     data() {
         return {
+            shoowOverlay:false,//控制移动端用户信息后的遮罩层
             isFullscreenEnable: screenfull.isEnabled,
             isFullscreen: false,
             dialogVisible1: false,
@@ -260,6 +358,9 @@ export default {
         }
     },
     methods: {
+        changeOverlay(){
+            this.shoowOverlay = !this.shoowOverlay
+        },
         fullscreen() {
             screenfull.toggle()
         },
@@ -510,6 +611,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.user_info {
+    color: #fff;
+    font-size: 14px;
+}
+.user_icon {
+    font-size: 32px;
+}
+.user_top {
+    height: 60px;
+    background-color: $g-header-bg;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user_bottom {
+    height: 100px;
+    background-color: #9ab63c;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
 .user {
     display: flex;
     align-items: center;
@@ -736,5 +861,56 @@ export default {
         }
     }
 }
+
+</style>
+<style lang="scss">
+.user_van-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.down-popover {
+    z-index: 2;
+    padding: 0 !important;
+    border: 0 solid #ebeef5 !important;
+    border-top: 1px solid #ebeef5 !important;
+    .popper__arrow::after {
+        top: -1px !important;
+    }
+
+    left: 0 !important;
+    width: 100vw;
+    margin-top: 3px !important;
+}
+@media (min-width: 920px) {
+    .down-popover {
+        padding: 0 !important;
+        border: 0 solid #ebeef5 !important;
+        border-top: 1px solid #ebeef5 !important;
+        .popper__arrow::after {
+            top: -1px !important;
+        }
+
+        left: unset !important;
+        right: 2px !important;
+        width: 400px;
+        margin-top: 13px !important;
+    }
+}
+// @media (min-width: 920px) {
+//     .down-popover {
+//         padding: 0 !important;
+//         border: 0 solid #ebeef5 !important;
+//         border-top: 1px solid #ebeef5 !important;
+//         .popper__arrow::after {
+//             top: -1px !important;
+//         }
+//         margin-top: 13px !important;
+//     }
+// }
 
 </style>
